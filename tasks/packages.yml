@@ -1,14 +1,9 @@
 ---
-- hosts: localhost
-  connection: local
-  become: true
-
-  tasks:
-  - name: Install packages
-    apt:
-      name:
-      - htop
-      - vim
-      - tmux
-      - zsh
-      - git
+- name: Install packages
+  apt:
+    name:
+    - htop
+    - vim
+    - tmux
+    - zsh
+    - git
