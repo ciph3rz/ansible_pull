@@ -5,3 +5,5 @@
 
   tasks:
   - name: Install Htop
+    pkg:
+      name: htop
