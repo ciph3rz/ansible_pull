@@ -1,5 +1,4 @@
 ---
-become: vagrant
 
 - name: Check if .zshrc exists
   stat:
