@@ -1,0 +1,35 @@
+---
+
+- name: Check if .zshrc exists
+  stat:
+    path: ~/.zshrc
+  register: stat_rc_result
+
+- name: Check if .oh-my-zsh exists
+  stat:
+    path: ~/.oh-my-zsh
+  register: stat_oh_my_zsh_result
+
+- name: Installing oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+  when: not stat_oh_my_zsh_result.stat.exists
+
+- name: Installing Powerlevel10k Theme
+  git:
+    repo=https://github.com/romkatv/powerlevel10k.git
+    dest=~/.oh-my-zsh/custom/themes/powerlevel10k
+  when: not stat_oh_my_zsh_result.stat.exists
+
+- name: Installing zsh-autocomplete
+  git:
+    repo=https://github.com/zsh-users/zsh-autosuggestions
+    dest=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  when: not stat_oh_my_zsh_result.stat.exists
+
+- name: Installing zsh-syntax-highlight
+  git:
+    repo=https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  when: not stat_oh_my_zsh_result.stat.exists
