@@ -9,7 +9,7 @@
       tags: always
       apt: update_cache=yes
       changed_when: False
-      when: ansible_distribution in ["Debian", "Ubuntu", "Pop_OS"]
+      when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS"]
 
     - name: pre-run | update repositories (arch)
       tags: always
