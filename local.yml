@@ -21,4 +21,10 @@
     - include: tasks/users.yml
     - include: tasks/cron.yml
     - include: tasks/packages.yml
+
+- hosts: localhost
+  connection: local
+  become: vagrant
+
+  tasks:
     - include: tasks/ohmyzsh.yml
