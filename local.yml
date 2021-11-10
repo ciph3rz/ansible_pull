@@ -24,7 +24,7 @@
 
 - hosts: localhost
   connection: local
-  become: vagrant
+  become_user: vagrant
 
   tasks:
     - include: tasks/ohmyzsh.yml
