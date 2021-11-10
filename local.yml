@@ -24,6 +24,7 @@
 
 - hosts: localhost
   connection: local
+  become: true
   become_user: vagrant
 
   tasks:
