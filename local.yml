@@ -2,12 +2,21 @@
 - hosts: localhost
   connection: local
   become: true
+  tags: always
 
   pre_tasks:
-    - name: update repositories
-      apt:
-        update_cache: yes
+    - name: pre-run | update repositories (debian, etc)
+      tags: always
+      apt: update_cache=yes
       changed_when: False
+      when: ansible_distribution in ["Archlinux", "Manjaro"]
+
+    - name: pre-run | update repositories (arch)
+      tags: always
+      pacman: update_cache=yes
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu", "Pop_OS"]
+
 
   tasks:
     - include: tasks/users.yml
