@@ -8,3 +8,11 @@
     - zsh
     - git
     - sudo
+    - curl
+    - wget
+    - locate
+    - fonts-hack-ttf
+    - file
+    - jq
+    - neofetch
+    - lolcat
