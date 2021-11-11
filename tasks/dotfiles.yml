@@ -1,0 +1,8 @@
+---
+- name: Downloading Dotfiles
+  git:
+    repo=https://github.com/ciph3rz/dotfiles/tree/linux
+    dest=~/code/dotfiles
+
+- name: Symlinking dotfiles
+  script: ~/code/dotfiles/make-symlinks.sh

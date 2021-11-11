@@ -29,3 +29,4 @@
 
   tasks:
     - include: tasks/ohmyzsh.yml
+    - include: tasks/dotfiles.yml
