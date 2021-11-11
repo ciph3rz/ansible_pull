@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   become: true
-  tags: always
+  tags: freedom
 
   pre_tasks:
     - name: pre-run | update repositories (debian, etc)
