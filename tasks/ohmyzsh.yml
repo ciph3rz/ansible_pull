@@ -1,8 +1,9 @@
 ---
+become: vagrant
 
 - name: Check if .zshrc exists
   stat:
-    path: $HOME/zshrc
+    path: ~/.zshrc
   register: stat_rc_result
 
 - name: Check if .oh-my-zsh exists
@@ -13,7 +14,7 @@
 - name: Installing oh-my-zsh
   git:
     repo=https://github.com/robbyrussell/oh-my-zsh
-    dest=/.oh-my-zsh
+    dest=~/.oh-my-zsh
   when: not stat_oh_my_zsh_result.stat.exists
 
 - name: Installing Powerlevel10k Theme
