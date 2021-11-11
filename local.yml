@@ -19,6 +19,7 @@
 
   tasks:
     - include: tasks/users.yml
+    - include: tasks/whoami.yml
     - include: tasks/cron.yml
     - include: tasks/packages.yml
 
@@ -26,15 +27,8 @@
   connection: local
   become: no
   # become_user: "{{ ansible_user_id }}"
-  become_user: "{{ lookup('env', 'USER') }}"
-
-  sub_tasks:
-  - name: get the username running the deploy
-    become: false
-    local_action: command whoami
-    register: username_on_the_host
-
-  - debug: var=username_on_the_host
+  # become_user: "{{ lookup('env', 'USER') }}"
+  become_user: "{{ login_user }}"
 
   tasks:
     - include: tasks/ohmyzsh.yml
