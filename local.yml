@@ -37,6 +37,5 @@
   become_user: "{{ login_user }}"
 
   tasks:
-    - include: tasks/whoami.yml
     - include: tasks/ohmyzsh.yml
     - include: tasks/dotfiles.yml
