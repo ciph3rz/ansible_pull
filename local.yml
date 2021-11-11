@@ -19,7 +19,6 @@
 
   tasks:
     - include: tasks/users.yml
-    - include: tasks/whoami.yml
     - include: tasks/cron.yml
     - include: tasks/packages.yml
 
@@ -31,5 +30,6 @@
   become_user: "{{ login_user }}"
 
   tasks:
+    - include: tasks/whoami.yml
     - include: tasks/ohmyzsh.yml
     - include: tasks/dotfiles.yml
