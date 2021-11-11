@@ -6,4 +6,4 @@
     version: linux
 
 - name: Symlinking dotfiles
-  script: ~/code/dotfiles/make-symlinks.sh
+  shell: ~/code/dotfiles/make-symlinks.sh
