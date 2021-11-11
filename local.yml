@@ -21,13 +21,14 @@
     - include: tasks/users.yml
     - include: tasks/cron.yml
     - include: tasks/packages.yml
-
-- hosts: localhost
-  connection: local
-  become: no
-
-  tasks:
     - include: tasks/whoami.yml
+
+# - hosts: localhost
+#   connection: local
+#   become: no
+
+#   tasks:
+#     - include: tasks/whoami.yml
 
 - hosts: localhost
   connection: local
