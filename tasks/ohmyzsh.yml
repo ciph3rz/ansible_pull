@@ -2,7 +2,7 @@
 
 - name: Check if .zshrc exists
   stat:
-    path: ~/.zshrc
+    path: $HOME/zshrc
   register: stat_rc_result
 
 - name: Check if .oh-my-zsh exists
