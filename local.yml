@@ -32,10 +32,8 @@
 
 - hosts: localhost
   connection: local
+  tags: shell
   become: yes
-  # become_user: "{{ ansible_user_id }}"
-  # become_user: "{{ lookup('env', 'USER') }}"
-  # become_user: "{{ login_user }}"
   become_user: "{{ remote_regular_user }}"
 
   tasks:

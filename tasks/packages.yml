@@ -1,5 +1,6 @@
 ---
 - name: Install packages
+  tags: core
   apt:
     name:
     - htop
