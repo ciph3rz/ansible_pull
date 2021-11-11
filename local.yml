@@ -31,7 +31,7 @@
 
 - hosts: localhost
   connection: local
-  become: no
+  become: yes
   # become_user: "{{ ansible_user_id }}"
   # become_user: "{{ lookup('env', 'USER') }}"
   # become_user: "{{ login_user }}"
