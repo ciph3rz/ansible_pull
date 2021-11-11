@@ -25,7 +25,8 @@
 - hosts: localhost
   connection: local
   become: yes
-  become_user: "{{ ansible_user_id }}"
+  # become_user: "{{ ansible_user_id }}"
+  become_user: "{{ lookup('env', 'USER') }}"
 
   tasks:
     - include: tasks/ohmyzsh.yml
