@@ -8,3 +8,7 @@
 - name: Set a fact with the user name.
   set_fact:
     login_user: "{{ whoami.stdout }}"
+
+- name: Get the non root remote user
+  set_fact:
+    remote_regular_user: "{{ ansible_env.SUDO_USER or ansible_user_id }}"
