@@ -17,6 +17,12 @@
       changed_when: False
       when: ansible_distribution == "Archlinux"
 
+    - name: pre-run | update repositories (RHEL)
+      tags: always
+      dnf: update_cache=yes
+      changed_when: False
+      when: ansible_os_family == "RedHat"
+
   tasks:
     - include: tasks/users.yml
     - include: tasks/cron.yml
