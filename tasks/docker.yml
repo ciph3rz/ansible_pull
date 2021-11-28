@@ -1,11 +1,11 @@
 - name: allow apt to use a repository over https
   apt:
-  pkg:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg2
-    - software-properties-common
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
   state: present
   update_cache: yes
   when: ansible_pkg_mgr == 'apt'
