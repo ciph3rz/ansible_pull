@@ -1,3 +1,4 @@
+---
 - name: allow apt to use a repository over https
   apt:
     pkg:
@@ -6,22 +7,22 @@
       - curl
       - gnupg2
       - software-properties-common
-  state: present
-  update_cache: yes
+    state: present
+    update_cache: yes
   when: ansible_pkg_mgr == 'apt'
 
 - name: fetching docker gpg key for apt
   apt_key:
-  url: "https://download.docker.com/linux/ubuntu/gpg"
-  state: present
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
   when: ansible_pkg_mgr == 'apt'
 
 - name: Adding docker apt sources list
   apt_repository:
-  repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-  state: present
-  filename: docker
-  update_cache: yes
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+    filename: docker
+    update_cache: yes
   when: ansible_pkg_mgr == 'apt'
 
 - name: installing docker packages with apt
@@ -50,7 +51,7 @@
   dnf:
     update_cache: yes
     name: dnf-plugins-core
-    when: ansible_pkg_mgr == 'dnf'
+  when: ansible_pkg_mgr == 'dnf'
 
 - name: add docker repo to dnf
   command:
@@ -75,6 +76,7 @@
       - docker-ce-cli
       - containerd.io
   when: ansible_pkg_mgr == 'dnf'
+
 - name: enable backward compatibility for cgroups on fedora 31+
   command:
     grubby --update-kernel=all --args="systemd.unified_cgroup_hierarchy=0"
