@@ -27,7 +27,7 @@
 
 - name: installing docker packages with apt
   apt:
-    pkg:
+    name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
