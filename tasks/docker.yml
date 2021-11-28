@@ -1,0 +1,109 @@
+- name: allow apt to use a repository over https
+  apt:
+  pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+  state: present
+  update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: fetching docker gpg key for apt
+  apt_key:
+  url: "https://download.docker.com/linux/ubuntu/gpg"
+  state: present
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Adding docker apt sources list
+  apt_repository:
+  repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+  state: present
+  filename: docker
+  update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: installing docker packages with apt
+  apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      # - python3-pip
+    state:
+      - present
+    when: ansible_pkg_mgr == 'apt'
+
+    # - name: installing docker-compose with pip3"
+- name: install docker compose (if configured).
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-linux-x86_64"
+    dest: "/usr/local/bin/docker-compose"
+    mode: 0755
+
+  # echo "pip3 install docker-compose"
+  # sudo pip3 install docker-compose
+
+
+- name: install dnf plugin support
+  dnf:
+    update_cache: yes
+    name: dnf-plugins-core
+    when: ansible_pkg_mgr == 'dnf'
+
+    - name: add docker repo to dnf
+      command:
+        dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+      args:
+        warn: false
+      when: ansible_pkg_mgr == 'dnf'
+
+    - name: change fedora release version
+      command:
+        # temporary workaround when os is too new
+        sed -i 's/\$releasever/31/g' /etc/yum.repos.d/docker-ce.repo
+      args:
+        warn: false
+      when: ansible_pkg_mgr == 'dnf'
+
+    - name: installing with dnf
+      dnf:
+        update_cache: yes
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+      when: ansible_pkg_mgr == 'dnf'
+    - name: enable backward compatibility for cgroups on fedora 31+
+      command:
+        grubby --update-kernel=all --args="systemd.unified_cgroup_hierarchy=0"
+      when:
+        - ansible_pkg_mgr == 'dnf'
+        - ansible_distribution_version >= '31'
+
+    - name: add {{ansible_user_id}} to docker group
+      user:
+        name: "{{ansible_user_id}}"
+        groups: docker
+        append: yes
+
+    - name: add docker to firewalld trusted zone
+      firewalld:
+        zone: trusted
+        interface: docker0
+        permanent: yes
+        immediate: yes
+        state: enabled
+      # shell: |
+      #   firewall-cmd --permanent --zone=trusted --change-interface=docker0
+      #   firewall-cmd --reload
+      #   systemctl restart firewalld
+      #   systemctl restart docker
+      when: ansible_distribution == 'fedora' or ansible_distribution == 'centos' or ansible_distribution == 'red hat enterprise linux'
+
+    - name: start and enable docker service
+      systemd:
+        enabled: true
+        state: started
+        name: docker
