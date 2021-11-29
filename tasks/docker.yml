@@ -33,8 +33,7 @@
       - containerd.io
       - docker-compose
       # - python3-pip
-    state:
-      - present
+    state: present
   when: ansible_pkg_mgr == 'apt'
 
     # - name: installing docker-compose with pip3"
