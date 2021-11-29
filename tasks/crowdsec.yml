@@ -1,0 +1,20 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+
+- name: Add an apt signing key
+  apt_key:
+    url: https://packagecloud.io/crowdsec/crowdsec/gpgkey
+
+- name: Add apt repo
+  apt_repository:
+    repo: deb https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release|lower }} main
+    update_cache: true
+
+- name: Install package
+  apt:
+    name:
+      - crowdsec
