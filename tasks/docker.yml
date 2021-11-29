@@ -31,17 +31,18 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+      - docker-compose
       # - python3-pip
     state:
       - present
-    when: ansible_pkg_mgr == 'apt'
+  when: ansible_pkg_mgr == 'apt'
 
     # - name: installing docker-compose with pip3"
-- name: install docker compose (if configured).
-  get_url:
-    url: "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-linux-x86_64"
-    dest: "/usr/local/bin/docker-compose"
-    mode: 0755
+# - name: install docker compose (if configured).
+#   get_url:
+#     url: "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-linux-x86_64"
+#     dest: "/usr/local/bin/docker-compose"
+#     mode: 0755
 
   # echo "pip3 install docker-compose"
   # sudo pip3 install docker-compose
