@@ -1,24 +1,35 @@
 ---
-- name: Install dependencies
+- name: Install Crowdsec dependencies
   apt:
     name:
       - apt-transport-https
       - gnupg
   when: ansible_pkg_mgr == 'apt'
 
-- name: Add an apt signing key
+- name: Add Crowdsec apt signing key
   apt_key:
     url: https://packagecloud.io/crowdsec/crowdsec/gpgkey
   when: ansible_pkg_mgr == 'apt'
 
-- name: Add apt repo
+- name: Add Crowdsec apt repo
   apt_repository:
     repo: deb https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release|lower }} main
     update_cache: true
   when: ansible_pkg_mgr == 'apt'
 
-- name: Install package
+- name: Install Crowdsec base package
   apt:
     name:
       - crowdsec
   when: ansible_pkg_mgr == 'apt'
+
+- name: Install Crowdsec-Firewall-Bouncer-Iptables
+  apt:
+    name:
+      - crowdsec-firewall-bouncer-iptables
+  when: ansible_pkg_mgr == 'apt'
+
+
+# sudo apt install crowdsec-firewall-bouncer-iptables
+# sudo cscli parsers install crowdsecurity/iptables-logs
+# sudo systemctl reload crowdsec
