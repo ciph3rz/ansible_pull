@@ -11,19 +11,36 @@
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
 
-- name: fetching docker gpg key for apt
+- name: fetching docker gpg key for apt (ubuntu)
   apt_key:
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
-  when: ansible_pkg_mgr == 'apt'
+#  when: ansible_pkg_mgr == 'apt'
+  when: ansible_distribution == 'Ubuntu'
 
-- name: Adding docker apt sources list
+- name: Adding docker apt sources list (ubuntu)
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     state: present
     filename: docker
     update_cache: yes
-  when: ansible_pkg_mgr == 'apt'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: fetching docker gpg key for apt (debian)
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    state: present
+#  when: ansible_pkg_mgr == 'apt'
+  when: ansible_distribution == 'Debian'
+
+- name: Adding docker apt sources list (debian)
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable
+    state: present
+    filename: docker
+    update_cache: yes
+  when: ansible_distribution == 'Debian'
+
 
 - name: installing docker packages with apt
   apt:
