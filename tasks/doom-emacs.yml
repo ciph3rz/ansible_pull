@@ -1,0 +1,8 @@
+---
+- name: Cloning Doom Emacs to .emacs.d directory
+  git:
+    repo: https://github.com/hlissner/doom-emacs
+    dest: ~/.emacs.d
+
+      #- name: Doom Install
+      #  command: chdir=~/.emacs.d/bin/ doom install
