@@ -1,0 +1,30 @@
+---
+- name: allow apt to use a repository over https
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Fetching Brave-Browser GPG key for APT
+  apt_key:
+    url: "https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg"
+    state: present
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Add Brave APT repository
+  apt_repository:
+    repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Install Brave Browser
+  apt:
+    pkg:
+      - brave-browser
+    state: present
+  when: ansible_pkg_mgr == 'apt'
