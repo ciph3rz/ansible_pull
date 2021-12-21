@@ -1,0 +1,63 @@
+---
+- name: Downloading Powerline Fonts 
+  git:
+    repo: https://github.com/powerline/fonts.git 
+    dest: /tmp/fonts
+
+- name: Installing Powerline Fonts
+  shell: sh /tmp/fonts/install.sh 
+  args:
+    chdir: /tmp/fonts/ 
+    executable: /bin/bash
+    
+- name: Install Droid Sans Mono for Powerline Nerd Font Complete
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Tufte ET Bembo Fonts (et-book-boldline)
+  get_url:
+    url: https://github.com/edwardtufte/et-book/raw/gh-pages/et-book/et-book-bold-line-figures/et-book-bold-line-figures.ttf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Tufte ET Bembo Fonts (et-book-italic-old-style)
+  get_url:
+    url: https://github.com/edwardtufte/et-book/raw/gh-pages/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.ttf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Tufte ET Bembo Fonts (et-book-roman-line-figures)
+  get_url:
+    url: https://github.com/edwardtufte/et-book/raw/gh-pages/et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Tufte ET Bembo Fonts (et-book-roman-old-style)
+  get_url:
+    url: https://github.com/edwardtufte/et-book/raw/gh-pages/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Tufte ET Bembo Fonts (et-book-roman-semi-bold-old-style)
+  get_url:
+    url: https://github.com/edwardtufte/et-book/raw/gh-pages/et-book/et-book-semi-bold-old-style-figures/et-book-semi-bold-old-style-figures.ttf
+    dest: ~/.local/share/fonts
+    mode: 0755
+
+- name: Installing Overpass Fonts
+  unarchive:
+    src: https://github.com/RedHatOfficial/Overpass/releases/download/3.0.2/overpass-desktop-fonts.zip
+    dest: ~/.local/share/fonts
+    remote_src: yes
+
+- name: Installing Iosevka Fonts
+  unarchive:
+    src: https://github.com/be5invis/Iosevka/releases/download/v4.3.0/ttf-iosevka-4.3.0.zip
+    dest: ~/.local/share/fonts
+    remote_src: yes
+
+
+- name: Running fc-cache
+  shell: fc-cache -vf ~/.local/share/fonts
