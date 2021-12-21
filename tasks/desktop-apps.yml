@@ -1,0 +1,12 @@
+---
+- name: Install Desktop applications
+  apt:
+    pkg:
+      - gnome-tweaks
+      - flameshot
+      - vlc
+      - gnupg
+      - jq
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
