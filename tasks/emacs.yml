@@ -1,0 +1,17 @@
+---
+- name: Install Emacs and key dependancies
+  apt:
+    pkg:
+      - golang
+      - shellcheck
+      - cmake
+      - xclip
+      - graphviz
+      - python3-proselint
+      - fd-find
+      - ripgrep
+      - emacs
+
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
