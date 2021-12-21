@@ -1,0 +1,6 @@
+---
+- name: Creating Org symbolic links
+  file:
+    src: ~/SynologyDrive/org
+    dest: ~/org/
+    state: link
