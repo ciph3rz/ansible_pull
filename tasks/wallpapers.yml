@@ -1,0 +1,5 @@
+---
+- name: Downloading DT wallpapers
+  git:
+    repo: https://gitlab.com/dwt1/wallpapers.git
+    dest: ~/Pictures/
