@@ -17,3 +17,7 @@
     - jq
     - neofetch
     - lolcat
+    - figlet
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
