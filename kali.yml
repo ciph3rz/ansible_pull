@@ -30,8 +30,8 @@
     - include: tasks/emacs.yml
     - include: tasks/desktop-apps.yml
     - include: tasks/whoami.yml
-    - include: tasks/synodrive.yml
-    - include: tasks/brave-browser.yml
+    # - include: tasks/synodrive.yml
+    # - include: tasks/brave-browser.yml
 
 # - hosts: localhost
 #   connection: local
@@ -51,4 +51,4 @@
     - include: tasks/dotfiles.yml
     - include: tasks/doom-emacs.yml
     - include: tasks/fonts.yml
-    - include: tasks/wallpapers.yml
+    # - include: tasks/wallpapers.yml

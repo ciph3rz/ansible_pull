@@ -4,7 +4,7 @@
 printf "Bootstrap Script\n"
 
 printf "Which Ansible Play would you like to run?\n"
-printf "For example core, desktop or vps?\n "
+printf "For example core, desktop, kali or vps?\n "
 
 read -r play
 
