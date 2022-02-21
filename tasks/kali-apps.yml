@@ -1,0 +1,25 @@
+---
+- name: Install Kali applications
+  apt:
+    pkg:
+      - seclists
+      - enum4linux
+      - feroxbuster
+      - gobuster
+      - impacket-scripts
+      - nbtscan
+      - nikto
+      - onesixtyone
+      - oscanner
+      - redis-tools
+      - smbclient
+      - smbmap
+      - snmp
+      - sslscan
+      - sipvicious
+      - tnscmd10g
+      - whatweb
+      - wkhtmltopdf
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
