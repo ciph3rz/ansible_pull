@@ -25,4 +25,7 @@
 - name: put pubkey
   lineinfile:
     path: "/home/ansible/.ssh/authorized_keys"
-    line: "{{ pubkey }}"
+    line: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPm1rYilAnL+mUjAvym2LuJwFYbrajkHtoXWNfjwPjqJ ansible}}"
+    owner: ansible
+    group: ansible
+    mode: 0644
