@@ -6,3 +6,13 @@
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
+
+- name: Configuring UFW Firewall
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Enabling UFW Firewall
+  ufw:
+    state: enabled
+    logging: 'on'
