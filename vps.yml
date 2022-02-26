@@ -30,6 +30,7 @@
     - include: tasks/whoami.yml
     - include: tasks/crowdsec.yml
     - include: tasks/docker.yml
+    - include: tasks/vps-tasks.yml
 
 - hosts: localhost
   connection: local
