@@ -11,3 +11,18 @@
     owner: root
     group: root
     mode: 0440
+
+- name: make ssh directory
+  file:
+    path: "/home/ansible/.ssh"
+    state: directory
+
+- name: create empty file
+  file:
+    path: "/home/ansible/.ssh/authorized_keys"
+    state: touch
+
+- name: put pubkey
+  lineinfile:
+    path: "/home/ansible/.ssh/authorized_keys"
+    line: "{{ pubkey }}"
