@@ -64,6 +64,9 @@
   file:
     path: "/home/edworks/tools/linux-pe-scripts"
     state: directory
+    owner: edworks
+    group: edworks
+
 
 - name: copying linux enum scripts to linux-pe-directory
   copy:
