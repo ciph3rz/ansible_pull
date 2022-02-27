@@ -31,6 +31,9 @@
   file:
     path: "/home/edworks/tools"
     state: directory
+    owner: edworks
+    group: edworks
+
 
 - name: clone autorecon repos into tools
   git:
@@ -72,13 +75,23 @@
   copy:
     src: "/home/edworks/tools/LinEnum/LinEnum.sh"
     dest: "/home/edworks/tools/linux-pe-scripts/LinEnum.sh"
+    owner: edworks
+    group: edworks
+    mode: 0777
+
 
 - name: copying linux exploit suggester scripts to linux-pe-directory
   copy:
     src: "/home/edworks/tools/linux-exploit-suggester/linux-exploit-suggester.sh"
     dest: "/home/edworks/tools/linux-pe-scripts/linux-exploit-suggester.sh"
+    owner: edworks
+    group: edworks
+    mode: 0777
 
 - name: copying linux privesc scripts to linux-pe-directory
   copy:
     src: "/home/edworks/tools/unix-privesc-check/upc.sh"
     dest: "/home/edworks/tools/linux-pe-scripts/upc.sh"
+    owner: edworks
+    group: edworks
+    mode: 0777
