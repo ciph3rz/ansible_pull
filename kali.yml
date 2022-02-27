@@ -7,7 +7,7 @@
   pre_tasks:
     - name: pre-run | update repositories (debian, etc)
       tags: always
-      apt: update_cache=yes state=latest
+      apt: update_cache=yes state=latest upgrade=full
       changed_when: False
       when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS", "Kali"]
 
