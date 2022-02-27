@@ -20,6 +20,18 @@
       - tnscmd10g
       - whatweb
       - wkhtmltopdf
+      - python3-pip
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
+
+- name: make tools directory
+  file:
+    path: "/home/edworks/tools"
+    state: directory
+
+- name: clone autorecon repos into tools
+  git:
+    repo: https://github.com/Tib3rius/AutoRecon.git
+    dest: "/home/edworks/tools/autorecon"
+    update: yes
