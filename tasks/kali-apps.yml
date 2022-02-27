@@ -41,3 +41,41 @@
 - name: install autorecon
   pip:
     requirements: "/home/edworks/tools/autorecon/requirements.txt"
+
+- name: Cloning LinEnum
+  git:
+    repo: https://github.com/rebootuser/LinEnum.git
+    dest: "/home/edworks/tools/LinEnum"
+    update: yes
+
+- name: Cloning unix-privesc-check
+  git:
+    repo: https://github.com/pentestmonkey/unix-privesc-check.git
+    dest: "/home/edworks/tools/unix-privesc-check"
+    update: yes
+
+- name: Cloning linux-exploit-suggester
+  git:
+    repo: https://github.com/mzet-/linux-exploit-suggester.git
+    dest: "/home/edworks/tools/linux-exploit-suggester"
+    update: yes
+
+- name: make linux-pe-scripts directory
+  file:
+    path: "/home/edworks/tools/linux-pe-scripts"
+    state: directory
+
+- name: copying linux enum scripts to linux-pe-directory
+  copy:
+    src: "/home/edworks/tools/LinEnum/LinEnum.sh"
+    dest: "/home/edworks/tools/linux-pe-scripts/LinEnum.sh"
+
+- name: copying linux exploit suggester scripts to linux-pe-directory
+  copy:
+    src: "/home/edworks/tools/linux-exploit-suggester/linux-exploit-suggester.sh"
+    dest: "/home/edworks/tools/linux-pe-scripts/linux-exploit-suggester.sh"
+
+- name: copying linux privesc scripts to linux-pe-directory
+  copy:
+    src: "/home/edworks/tools/unix-privesc-check/upc.sh"
+    dest: "/home/edworks/tools/linux-pe-scripts/upc.sh"
