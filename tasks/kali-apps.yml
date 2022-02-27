@@ -35,3 +35,8 @@
     repo: https://github.com/Tib3rius/AutoRecon.git
     dest: "/home/edworks/tools/autorecon"
     update: yes
+
+- name: install autorecon
+  pip:
+    requirements: "/home/edworks/tools/autorecon/requirements.txt"
+    virtualenv: /autorecon/venv
