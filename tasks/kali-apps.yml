@@ -41,4 +41,3 @@
 - name: install autorecon
   pip:
     requirements: "/home/edworks/tools/autorecon/requirements.txt"
-    virtualenv: /autorecon/venv
