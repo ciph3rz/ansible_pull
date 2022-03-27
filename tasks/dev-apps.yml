@@ -1,0 +1,10 @@
+---
+- name: Install Developer applications
+  apt:
+    pkg:
+      - golang-go
+      - vagrant
+      - awscli
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'

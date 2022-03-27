@@ -33,6 +33,7 @@
     - include: tasks/synodrive.yml
     - include: tasks/brave-browser.yml
     - include: tasks/docker.yml
+    - include: tasks/dev-apps.yml
 
 # - hosts: localhost
 #   connection: local
