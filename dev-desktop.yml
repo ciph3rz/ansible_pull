@@ -32,6 +32,7 @@
     - include: tasks/whoami.yml
     - include: tasks/synodrive.yml
     - include: tasks/brave-browser.yml
+    - include: tasks/gnome.yml
     - include: tasks/docker.yml
     - include: tasks/dev-apps.yml
 

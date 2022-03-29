@@ -1,0 +1,28 @@
+---
+- name: Set Dock on the left
+  become_user: edworks
+  dconf: key="/org/gnome/shell/extensions/dash-to-dock/dock-position" value="'LEFT'"
+
+- name: Set Dock size
+  become_user: edworks
+  dconf: key="/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size" value="30"
+
+- name: Set CAPS to additional ESC
+  become_user: edworks
+  dconf: key="/org/gnome/desktop/input-sources/xkb-options" value="['caps:escape']"
+
+- name: Set Terminal Font
+  become_user: edworks
+  dconf: key="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font" value="'Droid Sans Mono for Powerline 12'"
+
+- name: Set Terminal Transparency Value
+  become_user: edworks
+  dconf: key="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-transparency-percent" value="5"
+
+- name: Set Terminal Transparency enablement
+  become_user: edworks
+  dconf: key="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-transparent-background" value="true"
+
+- name: Set Terminal Transparency theme
+  become_user: edworks
+  dconf: key="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-theme-transparency" value="false"
