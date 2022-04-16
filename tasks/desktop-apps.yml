@@ -8,6 +8,7 @@
       - gnupg
       - jq
       - python3-psutil
+      - transmission
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
