@@ -21,6 +21,9 @@
     - python3
     - python3-venv
     - lsb-release
+    - ripgrep
+    - bat
+    - exa
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
