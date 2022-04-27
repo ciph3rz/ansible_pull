@@ -18,18 +18,18 @@
 #  when: ansible_pkg_mgr == 'apt'
   when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
 
-- name: Adding docker apt sources list (Ubuntu/Pop_OS!)
+- name: Adding docker apt sources list for AMD64 (Ubuntu/Pop_OS!)
   apt_repository:
-    #repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+   # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
     filename: docker
     update_cache: yes
   # when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
-  when: (ansible_distribution in ["Ubuntu", "Pop!_OS"] and ansible_architecture == "arm64")
+  when: ansible_distribution in ["Ubuntu", "Pop!_OS"] #and ansible_architecture == "amd64")
   #when: ansible_distribution == 'Ubuntu'
 
-- name: Adding docker apt sources list (Ubuntu arm64)
+- name: Adding docker apt sources list for ARM64 (Ubuntu)
   apt_repository:
     #repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
     repo: "deb [arch=arm64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
