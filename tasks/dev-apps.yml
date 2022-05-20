@@ -1,5 +1,5 @@
 ---
-- name: Install Developer applications
+- name: Install Developer applications (APT)
   apt:
     pkg:
       - golang-go
@@ -9,13 +9,24 @@
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
 
+- name: Install Developer applications (RHEL)
+  dnf:
+    pkg:
+      - golang-go
+      - vagrant
+      - awscli
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'dnf'
+
 - debconf:
     name: virtualbox-ext-pack
     question: virtualbox-ext-pack/license
     value: "true"
     vtype: select
+  when: ansible_pkg_mgr == 'apt'
 
-- name: Install Virtualization (virtualbox) applications
+- name: Install Virtualization (virtualbox) applications (APT)
   apt:
     pkg:
       - virtualbox
@@ -23,6 +34,15 @@
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
+
+- name: Install Virtualization (virtualbox) applications (RHEL)
+  dnf:
+    pkg:
+      - virtualbox
+      - virtualbox-ext-pack
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'dnf'
 
 
 # - name: fetching virtualbox gpg-asc key for apt (Ubuntu/Pop_OS!)
