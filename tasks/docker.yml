@@ -106,6 +106,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+      - docker-compose
   when: ansible_pkg_mgr == 'dnf'
 
 # - name: enable backward compatibility for cgroups on fedora 31+
