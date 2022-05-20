@@ -13,11 +13,11 @@ cd $HOME/code
 
 printf "Installing pre-requisites\n"
 
-if $ID = "ubuntu"; then
+if  [[ $ID = "ubuntu" ]]; then
 
     sudo apt install git curl wget ansible
 
-elif $ID = "fedora"; then
+elif [[ $ID = "fedora" ]]; then
     sudo dnf install git curl wget ansible
 else
     ID_Uknown=1
