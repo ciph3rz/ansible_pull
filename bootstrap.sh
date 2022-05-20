@@ -24,7 +24,7 @@ else
 fi
 
 printf "Cloning Ansible Library\n"
-if [ -f $HOME/code/ansible_pull ]; then
+if [ -d $HOME/code/ansible_pull ]; then
     git pull https://github.com/ciph3rz/ansible_pull.git
 else
     git clone https://github.com/ciph3rz/ansible_pull.git
