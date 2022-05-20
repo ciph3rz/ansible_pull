@@ -2,3 +2,5 @@
 - name: Downloading Synology drive
   apt:
     deb: https://global.download.synology.com/download/Utility/SynologyDriveClient/3.0.2-12682/Ubuntu/Installer/x86_64/synology-drive-client-12682.x86_64.deb?model=DS1019%2B&bays=5&dsm_version=7.0.1&build_number=42218&_ga=2.204766804.553968223.1640122238-354761271.1640122238
+
+  when: ansible_pkg_mgr == 'apt'
