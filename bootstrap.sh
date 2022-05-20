@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-
+##!/usr/bin/env bash
+. /etc/os-release
 
 printf "Bootstrap Script\n"
 
@@ -13,10 +13,22 @@ cd $HOME/code
 
 printf "Installing pre-requisites\n"
 
-sudo apt install git curl wget ansible
+if $ID = "ubuntu"; then
+
+    sudo apt install git curl wget ansible
+
+elif $ID = "fedora"; then
+    sudo dnf install git curl wget ansible
+else
+    ID_Uknown=1
+fi
 
 printf "Cloning Ansible Library\n"
-git clone https://github.com/ciph3rz/ansible_pull.git
+if [ -f $HOME/code/ansible_pull ]; then
+    git pull https://github.com/ciph3rz/ansible_pull.git
+else
+    git clone https://github.com/ciph3rz/ansible_pull.git
+fi
 
 cd $HOME/code/ansible_pull
 
