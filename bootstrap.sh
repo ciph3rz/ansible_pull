@@ -13,7 +13,7 @@ printf "For example core, desktop, kali or vps?\n "
 
 read -r play
 
-printf "Ensure Code Repo exists prior to running script"
+printf "Ensure Code Repo exists prior to running script\n"
 if [ ! -d $CODEREPO ]
 then
     mkdir -p $CODEREPO
