@@ -31,7 +31,7 @@
 
 - name: Install RHEL packages
   tags: core
-  pkg:
+  dnf:
     name:
     - htop
     - vim
