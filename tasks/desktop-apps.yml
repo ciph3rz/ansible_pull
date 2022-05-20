@@ -19,7 +19,7 @@
     pkg:
       - gnome-tweaks
       - flameshot
-      - vlc
+      # - vlc
       - gnupg
       - jq
       - python3-psutil
