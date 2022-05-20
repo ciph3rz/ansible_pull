@@ -18,7 +18,7 @@ if  [[ $ID = "ubuntu" ]]; then
     sudo apt install git curl wget ansible
 
 elif [[ $ID = "fedora" ]]; then
-    sudo dnf install git curl wget ansible
+    sudo dnf install git curl wget ansible util-linux-user
 else
     ID_Uknown=1
 fi
