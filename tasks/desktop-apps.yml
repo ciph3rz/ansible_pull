@@ -1,5 +1,5 @@
 ---
-- name: Install Desktop applications
+- name: Install Desktop applications (APT)
   apt:
     pkg:
       - gnome-tweaks
@@ -13,3 +13,18 @@
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
+
+- name: Install Desktop applications (RHEL)
+  dnf:
+    pkg:
+      - gnome-tweaks
+      - flameshot
+      - vlc
+      - gnupg
+      - jq
+      - python3-psutil
+      - transmission
+      - audacious
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'dnf'
