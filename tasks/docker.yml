@@ -91,13 +91,13 @@
     warn: false
   when: ansible_pkg_mgr == 'dnf'
 
-- name: change fedora release version
-  command:
-    # temporary workaround when os is too new
-    sed -i 's/\$releasever/31/g' /etc/yum.repos.d/docker-ce.repo
-  args:
-    warn: false
-  when: ansible_pkg_mgr == 'dnf'
+# - name: change fedora release version
+#   command:
+#     # temporary workaround when os is too new
+#     sed -i 's/\$releasever/36/g' /etc/yum.repos.d/docker-ce.repo
+#   args:
+#     warn: false
+#   when: ansible_pkg_mgr == 'dnf'
 
 - name: installing with dnf
   dnf:
@@ -108,12 +108,12 @@
       - containerd.io
   when: ansible_pkg_mgr == 'dnf'
 
-- name: enable backward compatibility for cgroups on fedora 31+
-  command:
-    grubby --update-kernel=all --args="systemd.unified_cgroup_hierarchy=0"
-  when:
-    - ansible_pkg_mgr == 'dnf'
-    - ansible_distribution_version >= '31'
+# - name: enable backward compatibility for cgroups on fedora 31+
+#   command:
+#     grubby --update-kernel=all --args="systemd.unified_cgroup_hierarchy=0"
+#   when:
+#     - ansible_pkg_mgr == 'dnf'
+#     - ansible_distribution_version >= '31'
 
 - name: add {{ansible_user_id}} to docker group
   user:
