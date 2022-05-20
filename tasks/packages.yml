@@ -42,14 +42,14 @@
     - curl
     - wget
     - locate
-    - fonts-hack-ttf
+    # - fonts-hack-ttf
     - file
     - jq
     - neofetch
     - lolcat
     - figlet
     - python3
-    - python3-venv
+    - python3-devel
     - python3-pip
     - lsb-release
     - ripgrep
