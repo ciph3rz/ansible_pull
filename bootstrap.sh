@@ -10,10 +10,13 @@ printf "Bootstrap Script\n"
 
 printf "Which Ansible Play would you like to run?\n"
 printf "For example core, desktop, kali or vps?\n "
+printf "\n "
 
 read -r play
 
 printf "Ensure Code Repo exists prior to running script\n"
+printf "\n "
+
 if [ ! -d $CODEREPO ]
 then
     mkdir -p $CODEREPO
@@ -24,6 +27,7 @@ mkdir -p $CODEREPO
 cd $CODEREPO
 
 printf "Installing pre-requisites\n"
+printf "\n "
 
 if  [[ $ID = "ubuntu" ]]; then
 
@@ -36,6 +40,7 @@ else
 fi
 
 printf "Cloning Ansible Library\n"
+printf "\n "
 # if [ -d $LOCALREPO ]; then
 #     git pull https://github.com/ciph3rz/ansible_pull.git
 # else
@@ -52,4 +57,5 @@ fi
 cd $LOCALREPO
 
 printf "Running Ansible Playbook $play \n"
+printf "\n "
 ansible-playbook $play.yml --ask-become-pass
