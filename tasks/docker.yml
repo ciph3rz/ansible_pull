@@ -12,16 +12,16 @@
   when: ansible_pkg_mgr == 'apt'
 
 - name: fetching docker gpg key for apt (Ubuntu/Pop_OS!)
-  apt_key:
+  ansible.builtin.get_url:
     url: "https://download.docker.com/linux/ubuntu/gpg"
-    state: present
+    dest: /usr/share/keyrings/docker.asc
 #  when: ansible_pkg_mgr == 'apt'
   when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
 
 - name: Adding docker apt sources list for AMD64 (Ubuntu/Pop_OS!)
   apt_repository:
    # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
     filename: docker
     update_cache: yes
