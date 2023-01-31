@@ -41,15 +41,15 @@
 
 
 - name: fetching docker gpg key for apt (Debian)
-  apt_key:
+  ansible.builtin.get_url:
     url: "https://download.docker.com/linux/debian/gpg"
-    state: present
+    dest: /usr/share/keyrings/docker.asc
 #  when: ansible_pkg_mgr == 'apt'
   when: ansible_distribution == 'Debian'
 
 - name: Adding docker apt sources list (Debian)
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
     state: present
     filename: docker
     update_cache: yes
