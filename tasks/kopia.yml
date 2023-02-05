@@ -1,0 +1,29 @@
+---
+- name: fetching kopia gpg key for apt (Ubuntu/Pop_OS!)
+  ansible.builtin.get_url:
+    url: "https://kopia.io/signing-key"
+    dest: /usr/share/keyrings/kopia.asc
+#  when: ansible_pkg_mgr == 'apt'
+  when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
+
+- name: Adding docker apt sources list for AMD64 (Ubuntu/Pop_OS!)
+  apt_repository:
+   # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/kopia.asc] http://packages.kopia.io/apt/ {{ ansible_distribution_release }} stable main"
+    state: present
+    filename: kopia
+    update_cache: yes
+  # when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
+  when: ansible_distribution in ["Ubuntu", "Pop!_OS"] #and ansible_architecture == "amd64")
+  #when: ansible_distribution == 'Ubuntu'
+
+- name: Installing kopia packages with apt
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose
+      # - python3-pip
+    state: present
+  when: ansible_pkg_mgr == 'apt'
