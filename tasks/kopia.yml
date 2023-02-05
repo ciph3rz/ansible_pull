@@ -6,10 +6,10 @@
 #  when: ansible_pkg_mgr == 'apt'
   when: ansible_distribution in ["Ubuntu", "Pop!_OS"]
 
-- name: Adding docker apt sources list for AMD64 (Ubuntu/Pop_OS!)
+- name: Adding kopia apt sources list for AMD64 (Ubuntu/Pop_OS!)
   apt_repository:
    # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/kopia.asc] http://packages.kopia.io/apt/ {{ ansible_distribution_release }} stable main"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/kopia.asc] http://packages.kopia.io/apt/  stable main"
     state: present
     filename: kopia
     update_cache: yes
@@ -20,10 +20,6 @@
 - name: Installing kopia packages with apt
   apt:
     name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-compose
-      # - python3-pip
+      - kopia
     state: present
   when: ansible_pkg_mgr == 'apt'
