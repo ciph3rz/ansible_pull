@@ -1,0 +1,27 @@
+---
+- name: "Make sure Apps directory exists"
+  ansible.builtin.file:
+    path: ~/Apps
+    mode: 0755
+    state: directory
+
+- name: "Download Logseq AppImage"
+  ansible.builtin.get_url:
+    url: "https://github.com/logseq/logseq/releases/download/0.8.17/Logseq-linux-x64-0.8.17.AppImage"
+    dest: ~/Apps/logseq.AppImage
+    mode: 0755
+
+- name: "Save Desktop Icon Logseq"
+  ansible.builtin.get_url:
+    url: https://gustavosantos.dev/images/logseq.png
+    dest: ~/Apps/logseq.png
+
+- name: "Create Desktop Entry Logseq"
+  ansible.builtin.template:
+    src: logseq.desktop.j2
+    dest: ~/.local/share/applications/logseq.desktop
+  register: desktop_entry
+
+- name: "Validate Desktop Entry Logseq"
+  ansible.builtin.command: >
+        /usr/bin/desktop-file-validate ~/.local/share/applications/logseq.desktop
