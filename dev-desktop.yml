@@ -35,6 +35,7 @@
     - include: tasks/gnome.yml
     - include: tasks/docker.yml
     - include: tasks/dev-apps.yml
+    - include: tasks/1password.yml
 
 # - hosts: localhost
 #   connection: local

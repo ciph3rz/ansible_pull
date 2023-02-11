@@ -33,6 +33,8 @@
     - include: tasks/synodrive.yml
     - include: tasks/brave-browser.yml
     - include: tasks/gnome.yml
+    - include: tasks/logseq.yml
+    - include: tasks/1password.yml
 
 # - hosts: localhost
 #   connection: local
