@@ -24,14 +24,14 @@
       when: ansible_os_family == "RedHat"
 
   tasks:
-    - include: tasks/whoami.yml
+    - include_tasks: tasks/whoami.yml
 
 # - hosts: localhost
 #   connection: local
 #   become: no
 
 #   tasks:
-#     - include: tasks/whoami.yml
+#     - include_tasks: tasks/whoami.yml
 
 - hosts: localhost
   connection: local
@@ -40,4 +40,4 @@
   become_user: "{{ remote_regular_user }}"
 
   tasks:
-    - include: tasks/logseq.yml
+    - include_tasks: tasks/logseq.yml

@@ -24,25 +24,25 @@
       when: ansible_os_family == "RedHat"
 
   tasks:
-    - include: tasks/users.yml
-    - include: tasks/packages.yml
-    - include: tasks/whoami.yml
-    - include: tasks/emacs.yml
-    - include: tasks/desktop-apps.yml
-    - include: tasks/whoami.yml
-    - include: tasks/synodrive.yml
-    - include: tasks/brave-browser.yml
-    - include: tasks/gnome.yml
-    - include: tasks/docker.yml
-    - include: tasks/dev-apps.yml
-    - include: tasks/1password.yml
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/whoami.yml
+    - include_tasks: tasks/emacs.yml
+    - include_tasks: tasks/desktop-apps.yml
+    - include_tasks: tasks/whoami.yml
+    - include_tasks: tasks/synodrive.yml
+    - include_tasks: tasks/brave-browser.yml
+    - include_tasks: tasks/gnome.yml
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/dev-apps.yml
+    - include_tasks: tasks/1password.yml
 
 # - hosts: localhost
 #   connection: local
 #   become: no
 
 #   tasks:
-#     - include: tasks/whoami.yml
+#     - include_tasks: tasks/whoami.yml
 
 - hosts: localhost
   connection: local
@@ -51,8 +51,8 @@
   become_user: "{{ remote_regular_user }}"
 
   tasks:
-    - include: tasks/ohmyzsh.yml
-    - include: tasks/dotfiles.yml
-    - include: tasks/doom-emacs.yml
-    - include: tasks/fonts.yml
-    - include: tasks/wallpapers.yml
+    - include_tasks: tasks/ohmyzsh.yml
+    - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/doom-emacs.yml
+    - include_tasks: tasks/fonts.yml
+    - include_tasks: tasks/wallpapers.yml

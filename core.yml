@@ -35,5 +35,5 @@
   become_user: "{{ remote_regular_user }}"
 
   tasks:
-    - include: tasks/ohmyzsh.yml
-    - include: tasks/dotfiles.yml
+    - include_tasks: tasks/ohmyzsh.yml
+    - include_tasks: tasks/dotfiles.yml

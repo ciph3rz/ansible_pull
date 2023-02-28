@@ -25,12 +25,12 @@
 
 
   tasks:
-    - include: tasks/users.yml
-    - include: tasks/packages.yml
-    - include: tasks/whoami.yml
-    - include: tasks/crowdsec.yml
-    - include: tasks/docker.yml
-    - include: tasks/vps-tasks.yml
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/whoami.yml
+    - include_tasks: tasks/crowdsec.yml
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/vps-tasks.yml
 
 - hosts: localhost
   connection: local
@@ -39,5 +39,5 @@
   become_user: "{{ remote_regular_user }}"
 
   tasks:
-    - include: tasks/ohmyzsh.yml
-    - include: tasks/dotfiles.yml
+    - include_tasks: tasks/ohmyzsh.yml
+    - include_tasks: tasks/dotfiles.yml

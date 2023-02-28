@@ -24,17 +24,17 @@
       when: ansible_os_family == "RedHat"
 
   tasks:
-    - include: tasks/users.yml
-    - include: tasks/cron.yml
-    - include: tasks/packages.yml
-    - include: tasks/whoami.yml
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/cron.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/whoami.yml
 
 # - hosts: localhost
 #   connection: local
 #   become: no
 
 #   tasks:
-#     - include: tasks/whoami.yml
+#     - include_tasks: tasks/whoami.yml
 
 - hosts: localhost
   connection: local
@@ -43,5 +43,5 @@
   become_user: "{{ remote_regular_user }}"
 
   tasks:
-    - include: tasks/ohmyzsh.yml
-    - include: tasks/dotfiles.yml
+    - include_tasks: tasks/ohmyzsh.yml
+    - include_tasks: tasks/dotfiles.yml
