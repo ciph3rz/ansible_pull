@@ -61,7 +61,7 @@
 
 - name: Install Pacman packages
   tags: core
-  dnf:
+  pacman:
     name:
     - htop
     - vim
