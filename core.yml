@@ -24,9 +24,9 @@
       when: ansible_os_family == "RedHat"
 
   tasks:
-    - include: tasks/users.yml
-    - include: tasks/packages.yml
-    - include: tasks/whoami.yml
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/whoami.yml
 
 - hosts: localhost
   connection: local
