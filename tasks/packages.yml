@@ -78,7 +78,7 @@
     - lolcat
     - figlet
     - python3
-    - python3-devel
+    # - python3-devel
     - python3-pip
     - redhat-lsb-core
     - ripgrep
