@@ -28,3 +28,15 @@
     state: present
     update_cache: yes
   when: ansible_pkg_mgr == 'dnf'
+
+- name: Install Desktop Apps (Arch)
+  pacman:
+    name:
+      - gnome-tweaks
+      - flameshot
+      - jq
+      - transmission-gtk
+      - audacious
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'pacman'

@@ -22,9 +22,18 @@
     update_cache: yes
   when: ansible_pkg_mgr == 'apt'
 
-- name: Install Brave Browser
+- name: Install Brave Browser (APT)
   apt:
     pkg:
       - brave-browser
     state: present
   when: ansible_pkg_mgr == 'apt'
+
+# - name: Install Brave Browser (Arch)
+#   pacman:
+#     name:
+#       - ripgrep
+#       - emacs
+#     state: present
+#     update_cache: yes
+#   when: ansible_pkg_mgr == 'pacman'
