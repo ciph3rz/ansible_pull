@@ -34,13 +34,13 @@
 - name: Install Emacs and key dependancies (Arch)
   pacman:
     name:
-      - golang
+      - go
       - shellcheck
       - cmake
       - xclip
       - graphviz
-      - python3-proselint
-      - fd-find
+      # - python3-proselint
+      - fd
       - ripgrep
       - emacs
     state: present
