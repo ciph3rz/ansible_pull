@@ -1,0 +1,119 @@
+---
+    - name: Install homebrew
+      include_role:
+        name: geerlingguy.mac.homebrew
+
+    - name: Make sure homebrew bin is in path
+      ansible.builtin.lineinfile:
+        path: /etc/paths
+        state: present
+        line: '/opt/homebrew/bin'
+      become: true
+      become_user: root
+
+    - name: 'add custom homebrew repos'
+      community.general.homebrew_tap:
+        name: [
+          homebrew/cask,
+#          homebrew/cask-drivers,
+          homebrew/cask-fonts,
+          homebrew/cask-versions,
+          homebrew/bundle,
+          nicoverbruggen/homebrew-cask,
+          d12frosted/emacs-plus,
+          hashicorp/tap,
+        ]
+
+    - name: "Install homebrew packages"
+      community.general.homebrew:
+        name: [
+          'autoconf',
+          'automake',
+          'aws-iam-authenticator',
+          'awscli',
+          'bfg',
+          'coreutils',
+          'curl',
+          'direnv',
+          'dockutil',
+          'fd',
+          'fzf',
+          'gnu-time',
+          'gpg',
+          'helm',
+          'htop',
+          'imagemagick@6',
+          'kubectx',
+          'kubernetes-cli',
+          'kubernetes-helm',
+          'libtool',
+          'libxslt',
+          'libyaml',
+          'lolcat',
+          'mas',
+          'neofetch',
+          'openssl',
+          'pandoc',
+          'pngpaste',
+          'pkg-config',
+          # 'postgresql',
+          'rcm',
+          'readline',
+          'redis',
+          'ripgrep',
+          # 'synology-drive',
+          'svn',
+          'sqlite3',
+          'tmux',
+          'unixodbc',
+          'unzip',
+          'vim',
+          'watchman',
+          'xz',
+          'yarn',
+          'zlib',
+          'zsh',
+        ]
+        state: present
+        update_homebrew: yes
+
+
+    - name: Install core packages via brew casks
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+      ignore_errors: yes
+      with_items:
+        - 1password
+        - 1password-cli
+        - alfred
+        - authy
+        - android-platform-tools
+        - brave-browser
+        - burp-suite
+        - evernote
+        - docker
+        - vagrant
+        - google-chrome
+        - firefox
+        - foobar2000
+        - iterm2
+        - logseq
+        - kindle
+        - ngrok
+        - postman
+        - protonvpn
+        - raspberry-pi-imager
+        - the-unarchiver
+        - transmission
+        - visual-studio-code
+        - vlc
+        - utm
+        - font-lato
+        - font-roboto
+        - font-source-code-pro-for-powerline
+        - font-source-code-pro
+        - font-iosevka-ss04
+        - font-iosevka-nerd-font
+        - font-source-sans-pro
+        - font-ubuntu-nerd-font
+        - font-hack-nerd-font
