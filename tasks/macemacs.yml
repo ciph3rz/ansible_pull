@@ -11,9 +11,11 @@
       path: "/Users/{{ lookup('env', 'USER') }}/.config/emacs"
     register: stat_doom_result
 
-  - name: Cloning Doom Emacs to .emacs.d directory
+  - name: Cloning Doom Emacs to ~/.config/emacs directory
     git:
       repo: https://github.com/hlissner/doom-emacs
       dest: "/Users/{{ lookup('env', 'USER') }}/.config/emacs"
     when: not stat_doom_result.stat.exists
 
+  - name: Configure symbolic link for org
+    shell: ln -s /Users/{{ lookup('env', 'USER') }}/SynologyDrive/org /Users/{{ lookup('env', 'USER') }}/org
