@@ -114,6 +114,6 @@
         - font-source-code-pro
         - font-iosevka-ss04
         - font-iosevka-nerd-font
-        - font-source-sans-pro
+#        - font-source-sans-pro
         - font-ubuntu-nerd-font
         - font-hack-nerd-font

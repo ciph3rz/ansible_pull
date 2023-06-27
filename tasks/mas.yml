@@ -1,0 +1,10 @@
+---
+  - name: "Install from Mac app store"
+    shell: mas install {{ item }}
+    with_items:
+ #     - 497799835 # xcode
+      - 441258766 # Magnet
+      - 1435957248 # Drafts
+      - 1284863847 # Unsplash
+      - 970246631 # Disk Cleaner
+      - 1451685025 # wireguard
