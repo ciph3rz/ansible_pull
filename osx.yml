@@ -5,6 +5,8 @@
 #    - include_tasks: tasks/whoami.yml
     - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/mas.yml
+    - include_tasks: tasks/macemacs.yml
+
 
 - hosts: localhost
   connection: local

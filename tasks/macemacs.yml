@@ -1,0 +1,19 @@
+---
+  - name: Install emacs via brew  with options
+    community.general.homebrew:
+      name: "emacs-plus"
+      state: present
+      install_options: with-modern-black-dragon-icon,with-mailutils,with-imagemagick
+    #     #install_options: "with-modern-doom3-icon"
+
+  - name: Check if Doom Emacs exists
+    stat:
+      path: "/Users/{{ lookup('env', 'USER') }}/.config/emacs"
+    register: stat_doom_result
+
+  - name: Cloning Doom Emacs to .emacs.d directory
+    git:
+      repo: https://github.com/hlissner/doom-emacs
+      dest: "/Users/{{ lookup('env', 'USER') }}/.config/emacs"
+    when: not stat_doom_result.stat.exists
+
