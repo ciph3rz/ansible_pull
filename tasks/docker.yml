@@ -141,3 +141,10 @@
     enabled: true
     state: started
     name: docker
+
+- name: Create theDock folder
+  file:
+    path: /opt/thedock
+    state: directory
+    owner: "{{ lookup('env', 'USER') }}"
+    group: docker
