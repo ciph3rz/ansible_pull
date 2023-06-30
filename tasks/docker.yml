@@ -116,9 +116,9 @@
 #     - ansible_pkg_mgr == 'dnf'
 #     - ansible_distribution_version >= '31'
 
-- name: add {{ansible_user_id}} to docker group
+- name: add "{{ lookup('env', 'USER') }}" to docker group
   user:
-    name: "{{ansible_user_id}}"
+    name: "{{ lookup('env', 'USER') }}"
     groups: docker
     append: yes
 
