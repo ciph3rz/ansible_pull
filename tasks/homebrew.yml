@@ -27,6 +27,7 @@
     - name: "Install homebrew packages"
       community.general.homebrew:
         name: [
+          'age',
           'autoconf',
           'automake',
           'aws-iam-authenticator',
@@ -53,6 +54,7 @@
           'mas',
           'neofetch',
           'openssl',
+          'openai-whisper',
           'pandoc',
           'pngpaste',
           'pkg-config',
@@ -99,6 +101,7 @@
         - iterm2
         - logseq
         - kindle
+        - macwhisper
         - ngrok
         - postman
         - protonvpn
