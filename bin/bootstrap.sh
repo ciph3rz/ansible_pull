@@ -29,7 +29,7 @@ cd $CODEREPO
 printf "Installing pre-requisites\n"
 printf "\n "
 
-if [[ $ID = "ubuntu" || $ID = "pop" ]]; then
+if [[ $ID = "ubuntu" || $ID = "debian" ]]; then
 
     sudo apt install git curl wget ansible
 
