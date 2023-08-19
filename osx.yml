@@ -6,6 +6,8 @@
     - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/mas.yml
     - include_tasks: tasks/macemacs.yml
+    - include_tasks: tasks/macfonts.yml
+    - include_tasks: tasks/macdock.yml
 
 
 - hosts: localhost

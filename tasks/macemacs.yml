@@ -17,6 +17,10 @@
       dest: "/Users/{{ lookup('env', 'USER') }}/.config/emacs"
     when: not stat_doom_result.stat.exists
 
+  - name: Run Doom Install Command
+    shell: "/Users/{{ lookup('env', 'USER') }}/.config/emacs/bin/doom install"
+    when: not stat_doom_result.stat.exists
+
   - name: Check if Org Symlink exists
     stat:
       path: "/Users/{{ lookup('env', 'USER') }}/org"
