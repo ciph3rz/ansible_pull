@@ -15,4 +15,10 @@
     update_cache: yes
   when: ansible_pkg_mgr == 'pacman'
 
+- name: Cloning NVchad ~/.config/nvim directory
+    git:
+      repo: https://github.com/NvChad/NvChad
+      dest: "/Users/{{ lookup('env', 'USER') }}/.config/nvim"
+
+
 
