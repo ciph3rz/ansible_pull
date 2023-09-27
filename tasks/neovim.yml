@@ -18,7 +18,13 @@
 - name: Cloning NVchad ~/.config/nvim directory
   git:
     repo: https://github.com/NvChad/NvChad
-    dest: "/Users/{{ lookup('env', 'USER') }}/.config/nvim"
+    dest: "/home/{{ lookup('env', 'USER') }}/.config/nvim"
+  when: ansible_pkg_mgr == 'apt'
 
+- name: Cloning NVchad ~/.config/nvim directory
+  git:
+    repo: https://github.com/NvChad/NvChad
+    dest: "/Users/{{ lookup('env', 'USER') }}/.config/nvim"
+  when: ansible_os_family == 'darwin'
 
 
