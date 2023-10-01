@@ -1,11 +1,16 @@
 ---
-- name: Install Neovim
-  apt:
-    pkg:
-      - neovim 
-    state: present
-    update_cache: yes
-  when: ansible_pkg_mgr == 'apt'
+- name: Install Latest Neovim Release Package to ~/.config/bin directory
+  unarchive:
+    src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+    dest: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
+    remote_src: yes
+  when: ansible_os_family in ['Debian', 'Ubuntu']
+
+- name: Create neovim symbolic link in ~/.config/bin/nvim
+  file:
+    src: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64/bin/nvim"
+    dest: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim"
+  when: ansible_os_family in ['Debian', 'Ubuntu']
 
 - name: Install Neovim
   pacman:
@@ -19,7 +24,7 @@
   git:
     repo: https://github.com/NvChad/NvChad
     dest: "/home/{{ lookup('env', 'USER') }}/.config/nvim"
-  when: ansible_pkg_mgr == 'apt'
+  when: ansible_pkg_mgr in ['apt', 'pacman'] 
 
 - name: Cloning NVchad ~/.config/nvim directory
   git:
