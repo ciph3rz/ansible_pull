@@ -11,12 +11,13 @@
     state: absent
   when: neovim_folder.stat.exists
 
-# - name: Create Neovim App Folder
-#   file:
-#     path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
-#     state: directory
-#   when: neovim_folder.stat.not.exists
-#
+- name: Create Neovim App Folder
+  file:
+    path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
+    state: directory
+    mode: 755
+  # when: neovim_folder.stat.not.exists
+
 - name: Install Latest Neovim Release Package to ~/.config/bin directory
   unarchive:
     src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
