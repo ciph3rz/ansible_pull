@@ -14,8 +14,7 @@
 - name: Create Neovim App Folder
   file:
     path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
-    state: present
-
+    state: directory
 
 - name: Install Latest Neovim Release Package to ~/.config/bin directory
   unarchive:
