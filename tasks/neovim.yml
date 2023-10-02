@@ -1,4 +1,16 @@
 ---
+- name: Check Neovim App Directory if it exists
+  stat:
+    path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
+  register: neovim_folder
+  ignore_errors: yes 
+
+- name: Remove Neovim Folder if it exists 
+  file:
+    path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
+    state: absent
+  when: neovim_folder.stat.exists
+
 - name: Install Latest Neovim Release Package to ~/.config/bin directory
   unarchive:
     src: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
