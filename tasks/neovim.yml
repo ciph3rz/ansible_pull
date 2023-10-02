@@ -15,6 +15,7 @@
   file:
     path: "/home/{{ lookup('env', 'USER') }}/.config/bin/nvim-linux64"
     state: directory
+  when: neovim_folder.stat.not.exists
 
 - name: Install Latest Neovim Release Package to ~/.config/bin directory
   unarchive:
