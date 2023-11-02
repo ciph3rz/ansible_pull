@@ -1,0 +1,4 @@
+---
+- name: Install Autorestic
+  include_role:
+    name: fuzzymistborn.autorestic
