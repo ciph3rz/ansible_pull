@@ -1,0 +1,15 @@
+---
+- name: Initial Setup and Role Installation
+  # hosts: your_target_host_or_group
+  # become: yes  # If you need to run tasks as a privileged user
+  gather_facts: no  # Skip gathering facts on the initial run
+
+  tasks:
+    - name: Install Ansible Galaxy roles
+      command: ansible-galaxy role install -r requirements.yml
+      args:
+        creates: "{{ item.name }}"
+      loop:
+        - "{{ role }}"
+      with_items: "{{ lookup('yaml', 'requirements.yml') }}"
+      when: not initial_run | default(false)
