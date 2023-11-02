@@ -12,4 +12,4 @@
     loop:
       - "{{ role }}"
     with_items: "{{ lookup('yaml', 'requirements.yml') }}"
-    when: not initial_run | default(false)
+    # when: not initial_run | default(false)
