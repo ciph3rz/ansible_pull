@@ -2,8 +2,8 @@
 - name: Install Autorestic Galaxy role
   community.general.galaxy:
     name: fuzzymistborn.autorestic
-    state: present  # You can use 'latest' to ensure the latest version
-  when: not role_installed.rc | default(0) != 0
+    state: latest  # You can use 'latest' to ensure the latest version
+  # when: not role_installed.rc | default(0) != 0
 
 - name: Install Autorestic
   include_role:
