@@ -56,6 +56,9 @@ fi
 
 cd $LOCALREPO
 
+printf "Install Autorestic Galaxy Role\n"
+ansible-galaxy role install fuzzymistborn.autorestic
+
 printf "Running Ansible Playbook $play \n"
 printf "\n "
 ansible-playbook $play.yml --ask-become-pass
