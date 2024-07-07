@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  tags: freedom
+
+  pre_tasks:
+    - name: pre-run | update repositories (debian, etc)
+      tags: always
+      apt: update_cache=yes state=latest
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS", "Kali"]
+
+    - name: pre-run | update repositories (arch)
+      tags: always
+      pacman: update_cache=yes
+      changed_when: False
+      when: ansible_distribution == "Archlinux"
+
+    - name: pre-run | update repositories (RHEL)
+      tags: always
+      dnf: update_cache=yes
+      changed_when: False
+      when: ansible_os_family == "RedHat"
+
+  tasks:
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/packages.yml
+    - include_tasks: tasks/whoami.yml
+    - include_tasks: tasks/zabbix-agent.yml
+
+- hosts: localhost
+  connection: local
+  tags: shell
+  become: yes
+  become_user: "{{ remote_regular_user }}"
+
+  tasks:
+    - include_tasks: tasks/ohmyzsh.yml
+    - include_tasks: tasks/dotfiles.yml
